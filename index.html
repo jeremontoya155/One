@@ -13,6 +13,7 @@
 </head>
 <body>
   <input class="nav-toggle" id="nav-toggle" type="checkbox" aria-label="Abrir menu" />
+  <input class="theme-toggle" id="theme-toggle" type="checkbox" aria-label="Activar modo oscuro" />
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="OneVision Company">
@@ -25,6 +26,7 @@
       <a href="#pharmacy">Farmacias BI</a>
       <a href="#success">Casos de exito</a>
       <a href="#faq">FAQ</a>
+      <label class="theme-switch" for="theme-toggle"><span></span><b>Claro</b><em>Oscuro</em></label>
       <a class="nav-cta" href="#contact">Contacto</a>
     </nav>
   </header>
@@ -195,69 +197,80 @@
           <p>Todos los proyectos del portfolio quedan integrados como casos de exito de OneVision, con especial foco en farmacias, BI e iPhone/Apple retail.</p>
         </div>
         <div class="case-grid">
-          <article class="case-card case-primary reveal">
+          <!-- Demo cronicos privado: https://democronicos.up.railway.app/login -->
+          <a class="case-card case-primary reveal" href="#contact">
+            <div class="case-top"><img class="case-logo" src="lovable-uploads/559862cf-9b41-46ac-92a9-94147804c20b.png" alt="Logo Farmacia BI"><span class="case-open">Demo</span></div>
             <div class="case-tag">Farmacias · Power BI · Caso principal</div>
             <h3>Farmacia BI / Cronicos</h3>
             <p>Dashboard para analizar clientes, recetas, precios, rentabilidad y seguimiento de cronicos. Ideal para farmacias que necesitan ver el negocio completo en una pantalla.</p>
             <div class="case-meta"><span>Power BI</span><span>Recetas</span><span>Rentabilidad</span><span>Clientes fiados</span></div>
-            <a href="https://democronicos.up.railway.app/login" target="_blank" rel="noopener">Ver demo cronicos</a>
-          </article>
-          <article class="case-card case-primary reveal">
+            <span class="case-link">Solicitar demo</span>
+          </a>
+          <!-- Fiadox privado: https://fiadox.up.railway.app/auth/login -->
+          <a class="case-card case-primary reveal" href="#contact">
+            <div class="case-top"><img class="case-logo" src="lovable-uploads/559862cf-9b41-46ac-92a9-94147804c20b.png" alt="Logo Fiadox"><span class="case-open">Demo</span></div>
             <div class="case-tag">Farmacias · Fiados · Gestion</div>
             <h3>Fiadox</h3>
             <p>Sistema de gestion de clientes fiados pensado para ordenar cobros, historiales, saldos y seguimiento diario con acceso simple desde web.</p>
             <div class="case-meta"><span>Gestion</span><span>Clientes</span><span>Farmacia</span><span>Web app</span></div>
-            <a href="https://fiadox.up.railway.app/auth/login" target="_blank" rel="noopener">Ver Fiadox</a>
-          </article>
-          <article class="case-card highlight reveal">
+            <span class="case-link">Solicitar demo</span>
+          </a>
+          <a class="case-card highlight reveal" href="https://iloopcba.com/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=iloopcba.com&sz=128" alt="Logo iLoop CBA"><span class="case-open">Abrir</span></div>
             <div class="case-tag">iPhone · Apple retail · Generico destacado</div>
             <h3>iLoop CBA</h3>
             <p>Experiencia comercial para productos Apple/iPhone con estetica limpia, foco visual, categorias claras y recorrido simple para consultas y ventas.</p>
             <div class="case-meta"><span>iPhone</span><span>Apple</span><span>Tienda</span><span>UX</span></div>
-            <a href="https://iloopcba.com/" target="_blank" rel="noopener">Ver iLoop</a>
-          </article>
-          <article class="case-card reveal">
+            <span class="case-link">Ver iLoop</span>
+          </a>
+          <a class="case-card reveal" href="https://chipstorecba.com/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=chipstorecba.com&sz=128" alt="Logo Chip Store CBA"><span class="case-open">Abrir</span></div>
             <div class="case-tag">Retail · Tecnologia</div>
             <h3>Chip Store CBA</h3>
             <p>Tienda online para mostrar productos, ordenar categorias y facilitar el recorrido de compra.</p>
             <div class="case-meta"><span>E-commerce</span><span>Catalogo</span><span>Stock</span></div>
-            <a href="https://chipstorecba.com/" target="_blank" rel="noopener">Ver proyecto</a>
-          </article>
-          <article class="case-card reveal">
+            <span class="case-link">Ver proyecto</span>
+          </a>
+          <a class="case-card reveal" href="http://sunflowersolar.com.ar/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=sunflowersolar.com.ar&sz=128" alt="Logo Sunflower Solar"><span class="case-open">Abrir</span></div>
             <div class="case-tag">Energia renovable</div>
             <h3>Sunflower Solar</h3>
             <p>Web institucional para explicar servicios solares, generar confianza y recibir consultas de clientes.</p>
             <div class="case-meta"><span>Institucional</span><span>Contacto</span><span>Mobile</span></div>
-            <a href="http://sunflowersolar.com.ar/" target="_blank" rel="noopener">Ver proyecto</a>
-          </article>
-          <article class="case-card reveal">
+            <span class="case-link">Ver proyecto</span>
+          </a>
+          <a class="case-card reveal" href="https://v-force.up.railway.app/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=v-force.up.railway.app&sz=128" alt="Logo V-Force"><span class="case-open">Abrir</span></div>
             <div class="case-tag">Sistema de gestion</div>
             <h3>V-Force</h3>
             <p>App web con panel, metricas y estructura para controlar informacion operativa.</p>
             <div class="case-meta"><span>Dashboard</span><span>Metricas</span><span>Gestion</span></div>
-            <a href="https://v-force.up.railway.app/" target="_blank" rel="noopener">Ver proyecto</a>
-          </article>
-          <article class="case-card reveal">
+            <span class="case-link">Ver proyecto</span>
+          </a>
+          <a class="case-card reveal" href="https://onevision-pedagogia.up.railway.app/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=onevision-pedagogia.up.railway.app&sz=128" alt="Logo OneVision Pedagogia"><span class="case-open">Abrir</span></div>
             <div class="case-tag">Educacion digital</div>
             <h3>OneVision Pedagogia</h3>
             <p>Plataforma educativa para organizar contenidos, cursos y una experiencia clara para estudiantes.</p>
             <div class="case-meta"><span>Educacion</span><span>Cursos</span><span>Plataforma</span></div>
-            <a href="https://onevision-pedagogia.up.railway.app/" target="_blank" rel="noopener">Ver proyecto</a>
-          </article>
-          <article class="case-card reveal">
+            <span class="case-link">Ver proyecto</span>
+          </a>
+          <a class="case-card reveal" href="https://matesitaca.up.railway.app/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=matesitaca.up.railway.app&sz=128" alt="Logo Mates ITACA"><span class="case-open">Abrir</span></div>
             <div class="case-tag">Gastronomia</div>
             <h3>Mates ITACA</h3>
             <p>Menu digital pensado para celular, lectura rapida y acceso directo desde el local.</p>
             <div class="case-meta"><span>Menu digital</span><span>Mobile</span><span>Rapido</span></div>
-            <a href="https://matesitaca.up.railway.app/" target="_blank" rel="noopener">Ver proyecto</a>
-          </article>
-          <article class="case-card reveal">
+            <span class="case-link">Ver proyecto</span>
+          </a>
+          <a class="case-card reveal" href="https://onevisionpedidos.up.railway.app/" target="_blank" rel="noopener">
+            <div class="case-top"><img class="case-logo" src="https://www.google.com/s2/favicons?domain=onevisionpedidos.up.railway.app&sz=128" alt="Logo OneVision Pedidos"><span class="case-open">Abrir</span></div>
             <div class="case-tag">Sistema de pedidos</div>
             <h3>OneVision Pedidos</h3>
             <p>Sistema para tomar pedidos, ver estados y ordenar el flujo de trabajo diario.</p>
             <div class="case-meta"><span>Pedidos</span><span>Estados</span><span>Operacion</span></div>
-            <a href="https://onevisionpedidos.up.railway.app/" target="_blank" rel="noopener">Ver proyecto</a>
-          </article>
+            <span class="case-link">Ver proyecto</span>
+          </a>
         </div>
       </div>
     </section>
