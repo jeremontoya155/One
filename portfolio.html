@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jeremías Montoya — Programador Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo+Mono:wght@400;500;600&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080907;--bg2:#10120e;--bg3:#171a14;--panel:#d9d1bd;
+  --fg:#f6f0df;--ink:#0b0c09;--fg2:rgba(246,240,223,0.7);--fg3:rgba(246,240,223,0.36);
+  --lime:#c7ff3d;--amber:#f0b847;--green:#5e8b55;
+  --lime-dim:rgba(199,255,61,0.12);--lime-border:rgba(199,255,61,0.28);
+  --border:rgba(246,240,223,0.1);--shadow:0 24px 90px rgba(0,0,0,0.45);
+  --r:4px;--r2:18px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:'Rajdhani',sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden;background-image:radial-gradient(circle at 12% 8%,rgba(199,255,61,0.13),transparent 28rem),radial-gradient(circle at 88% 18%,rgba(240,184,71,0.12),transparent 26rem),linear-gradient(90deg,rgba(246,240,223,0.035) 1px,transparent 1px),linear-gradient(rgba(246,240,223,0.035) 1px,transparent 1px);background-size:auto,auto,72px 72px,72px 72px;}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg,transparent 0 42%,rgba(199,255,61,0.06) 42% 43%,transparent 43% 100%),repeating-linear-gradient(0deg,rgba(255,255,255,0.018) 0 1px,transparent 1px 5px);mix-blend-mode:screen;}
+.cursor-dot{width:9px;height:9px;background:var(--lime);position:fixed;pointer-events:none;z-index:9999;opacity:0.85;transition:left 0.05s,top 0.05s;box-shadow:0 0 26px var(--lime);}
+nav{position:fixed;top:14px;left:14px;right:14px;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0.7rem;background:rgba(8,9,7,0.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border);box-shadow:var(--shadow);}
+.nav-logo{font-family:'Archivo Black',sans-serif;font-size:1rem;letter-spacing:-0.04em;color:var(--fg);text-transform:uppercase;}
+.nav-logo::before{content:'JM';display:inline-grid;place-items:center;width:34px;height:34px;margin-right:0.65rem;background:var(--lime);color:var(--ink);font-family:'Chivo Mono',monospace;font-size:12px;vertical-align:middle;}
+.nav-menu{display:flex;gap:0.2rem;list-style:none;}
+.nav-menu a{color:var(--fg2);text-decoration:none;font-family:'Chivo Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.55rem 0.75rem;border:1px solid transparent;transition:all 0.2s;display:block;}
+.nav-menu a:hover{color:var(--lime);border-color:var(--lime-border);background:var(--lime-dim);}
+.hero{min-height:100svh;display:grid;align-items:end;padding:7rem 1.2rem 2rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(145deg,rgba(8,9,7,0.5),rgba(8,9,7,0.95)),radial-gradient(ellipse 70% 55% at 52% 35%,rgba(199,255,61,0.12),transparent 62%);z-index:0;}
+.hero-grid{position:absolute;right:-18vw;top:16vh;width:58vw;aspect-ratio:1;background:conic-gradient(from 90deg,var(--lime),var(--amber),var(--green),var(--lime));opacity:0.22;filter:blur(14px);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);z-index:0;}
+.hero-content{position:relative;z-index:1;max-width:1180px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.55rem;background:var(--lime-dim);border:1px solid var(--lime-border);padding:0.45rem 0.75rem;font-family:'Chivo Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--lime);margin-bottom:1.2rem;}
+.hero-dot{width:7px;height:7px;background:var(--lime);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.35;transform:scale(0.65)}}
+.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(3.8rem,15vw,11rem);line-height:0.78;letter-spacing:-0.085em;margin-bottom:1.6rem;text-transform:uppercase;max-width:950px;text-wrap:balance;}
+.hero h1 em{font-style:normal;color:var(--lime);display:block;text-shadow:8px 8px 0 rgba(246,240,223,0.06);}
+.hero-sub{font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--fg2);max-width:620px;line-height:1.45;margin-bottom:2rem;font-weight:600;}
+.hero-cta{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 1.35rem;border-radius:0;font-family:'Chivo Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--lime);color:var(--ink);box-shadow:7px 7px 0 rgba(199,255,61,0.16);}
+.btn-primary:hover{background:#dcff78;transform:translate(-2px,-2px);box-shadow:11px 11px 0 rgba(199,255,61,0.14);}
+.btn-ghost{background:rgba(246,240,223,0.04);color:var(--fg);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--lime-border);color:var(--lime);transform:translateY(-2px);}
+.hero-scroll{position:absolute;bottom:1.5rem;right:1.5rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--fg3);font-family:'Chivo Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;}
+.hero-scroll-line{width:2px;height:44px;background:linear-gradient(to bottom,var(--lime),transparent);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--lime);overflow:hidden;padding:0.8rem 0;transform:rotate(-1deg) scaleX(1.03);}
+.ticker-track{display:flex;animation:slide 30s linear infinite;width:max-content;}
+.ticker-item{display:flex;align-items:center;gap:0.7rem;padding:0 2rem;font-family:'Chivo Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
+.ticker-sep{width:7px;height:7px;background:var(--ink);opacity:0.65;flex-shrink:0;}
+@keyframes slide{to{transform:translateX(-50%)}}
+section{padding:5rem 1.2rem;position:relative;}
+.s-tag{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:0.75rem;font-family:'Chivo Mono',monospace;}
+.s-title{font-family:'Archivo Black',sans-serif;font-size:clamp(2.35rem,8vw,5.4rem);line-height:0.88;letter-spacing:-0.075em;text-transform:uppercase;margin-bottom:2rem;text-wrap:balance;}
+.s-title em{font-style:normal;color:var(--lime);}
+.servicios{background:var(--bg2);}
+.sv-grid{display:flex;flex-direction:column;gap:0.9rem;}
+.sv-item{background:linear-gradient(145deg,rgba(246,240,223,0.06),rgba(246,240,223,0.025));border:1px solid var(--border);padding:1.6rem;display:flex;align-items:flex-start;gap:1.1rem;transition:all 0.22s;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset;}
+.sv-item:hover{border-color:var(--lime-border);background:rgba(199,255,61,0.055);transform:translateY(-4px);}
+.sv-icon{width:48px;height:48px;background:var(--lime);color:var(--ink);border:1px solid var(--lime);display:flex;align-items:center;justify-content:center;font-family:'Chivo Mono',monospace;font-size:16px;font-weight:800;flex-shrink:0;}
+.sv-body h3{font-size:21px;font-weight:700;margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:-0.02em;}
+.sv-body p{font-size:15px;color:var(--fg2);line-height:1.5;}
+.sv-tag{display:inline-block;margin-top:0.8rem;font-size:10px;font-family:'Chivo Mono',monospace;color:var(--lime);letter-spacing:0.05em;text-transform:uppercase;}
+.oferta-wrap{background:var(--panel);color:var(--ink);border:1px solid rgba(0,0,0,0.2);border-radius:var(--r);padding:2rem 1.4rem;position:relative;overflow:hidden;box-shadow:12px 12px 0 rgba(199,255,61,0.18);}
+.oferta-wrap::before{content:'';position:absolute;top:-70px;right:-70px;width:240px;height:240px;background:radial-gradient(circle,rgba(199,255,61,0.7) 0%,transparent 68%);pointer-events:none;}
+.oferta-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--ink);border:1px solid var(--ink);padding:0.35rem 0.8rem;font-family:'Chivo Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--lime);margin-bottom:1.2rem;}
+.oferta-wrap h2{font-family:'Archivo Black',sans-serif;font-size:clamp(2rem,8vw,4.6rem);line-height:0.9;letter-spacing:-0.075em;text-transform:uppercase;margin-bottom:1rem;max-width:720px;}
+.oferta-wrap p{font-size:18px;color:rgba(11,12,9,0.72);line-height:1.45;margin-bottom:1.5rem;font-weight:600;max-width:560px;}
+.oferta-items{display:flex;flex-direction:column;gap:0.7rem;margin-bottom:2rem;}
+.oferta-item{display:flex;align-items:center;gap:0.75rem;font-size:15px;color:rgba(11,12,9,0.78);font-weight:700;}
+.oferta-check{width:22px;height:22px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--lime);font-family:'Chivo Mono',monospace;}
+.casos{background:var(--bg);}
+.casos-intro{max-width:720px;color:var(--fg2);font-size:18px;font-weight:600;margin:-1rem 0 2rem;}
+.casos-list{display:flex;flex-direction:column;gap:0.85rem;}
+.caso{border:1px solid var(--border);padding:1.3rem;background:linear-gradient(135deg,rgba(246,240,223,0.06),rgba(246,240,223,0.02));display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--fg);transition:all 0.25s;position:relative;overflow:hidden;}
+.caso::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--lime);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+.caso:hover::before{transform:scaleY(1);}
+.caso:hover{border-color:var(--lime-border);background:rgba(199,255,61,0.06);transform:translateX(5px);}
+.caso-num{font-family:'Chivo Mono',monospace;font-size:11px;color:var(--lime);flex-shrink:0;writing-mode:vertical-rl;}
+.caso-body{flex:1;min-width:0;}
+.caso-cat{font-family:'Chivo Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lime);margin-bottom:0.25rem;}
+.caso-name{font-size:22px;font-weight:700;line-height:1;text-transform:uppercase;letter-spacing:-0.035em;}
+.caso-desc{font-size:14px;color:var(--fg2);margin-top:0.35rem;line-height:1.4;}
+.caso-meta{display:flex;flex-wrap:wrap;gap:0.45rem;margin-top:0.8rem;}
+.caso-meta span{font-family:'Chivo Mono',monospace;font-size:9px;text-transform:uppercase;color:var(--fg3);border:1px solid var(--border);padding:0.25rem 0.4rem;}
+.caso-arrow{color:var(--fg3);font-size:18px;transition:all 0.2s;flex-shrink:0;}
+.caso:hover .caso-arrow{color:var(--lime);transform:translateX(4px);}
+.stats{background:var(--bg2);}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.stat{background:var(--bg);border:1px solid var(--border);padding:1.5rem 1rem;}
+.stat-n{font-family:'Archivo Black',sans-serif;font-size:clamp(2.4rem,8vw,4.2rem);font-weight:900;color:var(--lime);line-height:0.9;display:block;margin-bottom:0.6rem;letter-spacing:-0.07em;}
+.stat-l{font-family:'Chivo Mono',monospace;font-size:10px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--fg3);line-height:1.4;}
+.stack{background:var(--bg);}
+.stack-cloud{display:flex;flex-wrap:wrap;gap:0.6rem;}
+.stack-pill{padding:0.6rem 0.9rem;border:1px solid var(--border);font-size:11px;font-family:'Chivo Mono',monospace;color:var(--fg2);transition:all 0.2s;letter-spacing:0.02em;background:rgba(246,240,223,0.035);}
+.stack-pill:hover{border-color:var(--lime-border);color:var(--lime);background:var(--lime-dim);transform:translateY(-2px);}
+.contacto{background:var(--bg2);}
+.contacto-top{background:linear-gradient(135deg,rgba(199,255,61,0.12),rgba(246,240,223,0.04));border:1px solid var(--lime-border);padding:1.5rem;margin-bottom:1.2rem;}
+.contacto-top h2{font-family:'Archivo Black',sans-serif;font-size:1.45rem;line-height:0.95;letter-spacing:-0.06em;text-transform:uppercase;margin-bottom:0.6rem;}
+.contacto-top p{font-size:15px;color:var(--fg2);margin-bottom:0;font-weight:600;}
+.contact-links{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg3);border:1px solid var(--border);text-decoration:none;color:var(--fg);transition:all 0.2s;}
+.contact-link:hover{border-color:var(--lime-border);background:rgba(199,255,61,0.055);transform:translateX(4px);}
+.contact-link-ico{width:38px;height:38px;background:var(--lime);color:var(--ink);border:1px solid var(--lime);display:flex;align-items:center;justify-content:center;font-family:'Chivo Mono',monospace;font-size:13px;font-weight:800;flex-shrink:0;}
+.contact-link-text{flex:1;}
+.contact-link-label{font-family:'Chivo Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3);margin-bottom:1px;}
+.contact-link-val{font-size:17px;font-weight:700;letter-spacing:-0.01em;overflow-wrap:anywhere;word-break:break-word;}
+.form-card{background:var(--bg3);border:1px solid var(--border);padding:1.5rem;}
+.form-card h3{font-family:'Archivo Black',sans-serif;font-size:1.55rem;line-height:0.95;letter-spacing:-0.06em;text-transform:uppercase;margin-bottom:1.2rem;}
+.form-group{margin-bottom:0.8rem;}
+.form-group input,.form-group textarea{width:100%;background:var(--bg2);border:1px solid var(--border);color:var(--fg);font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:600;padding:0.9rem 1rem;outline:none;transition:border-color 0.2s,background 0.2s;resize:none;-webkit-appearance:none;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--lime-border);background:#0b0d09;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--fg3);}
+footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;}
+.footer-logo{font-family:'Archivo Black',sans-serif;font-size:1.3rem;letter-spacing:-0.05em;text-transform:uppercase;color:var(--lime);margin-bottom:0.5rem;}
+footer p{font-size:12px;color:var(--fg3);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.shown{opacity:1;transform:translateY(0);}
+.reveal[data-delay="1"]{transition-delay:0.1s}.reveal[data-delay="2"]{transition-delay:0.2s}.reveal[data-delay="3"]{transition-delay:0.3s}.reveal[data-delay="4"]{transition-delay:0.4s}.reveal[data-delay="5"]{transition-delay:0.5s}
+@media(min-width:768px){
+  nav{left:28px;right:28px;padding:0.8rem 1rem;}
+  .hero{padding:8rem 3rem 5rem;}
+  section{padding:7rem 3rem;}
+  .sv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .stats-grid{grid-template-columns:repeat(4,1fr);}
+  .casos-list{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .contacto-inner{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+}
+@media(max-width:520px){
+  nav{align-items:flex-start;gap:0.6rem;}
+  .nav-logo{font-size:0.86rem;}
+  .nav-menu a{font-size:9px;padding:0.5rem 0.45rem;}
+  .hero h1{font-size:clamp(3.3rem,19vw,5rem);}
+  .hero-scroll{display:none;}
+  .ticker{transform:none;}
+  .contact-link{align-items:flex-start;gap:0.75rem;}
+  .contact-link-ico{width:34px;height:34px;font-size:11px;}
+  .contact-link-val{font-size:15px;line-height:1.15;}
+  .caso{align-items:flex-start;}
+  .caso-arrow{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Jeremías M.</div>
+  <ul class="nav-menu">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#casos">Proyectos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><div class="hero-dot"></div>Disponible para proyectos</div>
+    <h1>Jeremías<em>Montoya</em></h1>
+    <p class="hero-sub">Programador web full-stack. Diseño y desarrollo páginas, tiendas y sistemas claros para que tus clientes entiendan, confíen y compren más rápido.</p>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn btn-primary">Hablemos →</a>
+      <a href="#casos" class="btn btn-ghost">Ver proyectos</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div>scroll</div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">Desarrollo Web<div class="ticker-sep"></div></div>
+    <div class="ticker-item">E-commerce<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Sistemas a medida<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Docker &amp; Deploy<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Córdoba, Argentina<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Railway · VPS<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Mobile-first<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Energía Solar<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Educación Digital<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Desarrollo Web<div class="ticker-sep"></div></div>
+    <div class="ticker-item">E-commerce<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Sistemas a medida<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Docker &amp; Deploy<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Córdoba, Argentina<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Railway · VPS<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Mobile-first<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Energía Solar<div class="ticker-sep"></div></div>
+    <div class="ticker-item">Educación Digital<div class="ticker-sep"></div></div>
+  </div>
+</div>
+
+<section class="stats" id="sobre">
+  <div class="reveal"><div class="s-tag">// Números</div></div>
+  <div class="stats-grid reveal">
+    <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Clientes y proyectos<br>en producción</span></div>
+    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Entregas<br>a tiempo</span></div>
+    <div class="stat"><span class="stat-n">Full</span><span class="stat-l">Diseño, código<br>y deploy</span></div>
+    <div class="stat"><span class="stat-n">CBA</span><span class="stat-l">Córdoba<br>Argentina</span></div>
+  </div>
+</section>
+
+<section class="casos" id="casos">
+  <div class="reveal"><div class="s-tag">// Casos de éxito</div></div>
+  <h2 class="s-title reveal">Clientes <em></em></h2>
+  <p class="casos-intro reveal">Cada proyecto está pensado como una herramienta comercial: muestra qué hace el negocio, ordena la información y deja al cliente a un clic de consultar o comprar.</p>
+  <div class="casos-list">
+    <a href="http://sunflowersolar.com.ar/" target="_blank" rel="noopener" class="caso reveal" data-delay="1">
+      <div class="caso-num">01</div>
+      <div class="caso-body"><div class="caso-cat">Energía renovable</div><div class="caso-name">Sunflower Solar</div><div class="caso-desc">Web institucional para explicar servicios solares, generar confianza y recibir consultas de clientes.</div><div class="caso-meta"><span>Institucional</span><span>Contacto</span><span>Mobile</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+    <a href="https://chipstorecba.com/" target="_blank" rel="noopener" class="caso reveal" data-delay="2">
+      <div class="caso-num">02</div>
+      <div class="caso-body"><div class="caso-cat">Retail · Tecnología</div><div class="caso-name">Chip Store CBA</div><div class="caso-desc">Tienda online para mostrar productos, ordenar categorías y facilitar el recorrido de compra.</div><div class="caso-meta"><span>E-commerce</span><span>Catálogo</span><span>Stock</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+    <a href="https://iloopcba.com/" target="_blank" rel="noopener" class="caso reveal" data-delay="3">
+      <div class="caso-num">03</div>
+      <div class="caso-body"><div class="caso-cat">Tecnología Apple</div><div class="caso-name">iLoop CBA</div><div class="caso-desc">Experiencia comercial para productos Apple con estética limpia, foco visual y navegación simple.</div><div class="caso-meta"><span>Tienda</span><span>Producto</span><span>UX</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+    <a href="https://v-force.up.railway.app/" target="_blank" rel="noopener" class="caso reveal" data-delay="4">
+      <div class="caso-num">04</div>
+      <div class="caso-body"><div class="caso-cat">Sistema de gestión</div><div class="caso-name">V-Force</div><div class="caso-desc">App web con panel, métricas y estructura para controlar información operativa.</div><div class="caso-meta"><span>Dashboard</span><span>Métricas</span><span>Gestión</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+    <a href="https://onevision-pedagogia.up.railway.app/" target="_blank" rel="noopener" class="caso reveal" data-delay="5">
+      <div class="caso-num">05</div>
+      <div class="caso-body"><div class="caso-cat">Educación digital</div><div class="caso-name">OneVision Pedagogía</div><div class="caso-desc">Plataforma educativa para organizar contenidos, cursos y una experiencia clara para estudiantes.</div><div class="caso-meta"><span>Educación</span><span>Cursos</span><span>Plataforma</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+    <a href="https://matesitaca.up.railway.app/" target="_blank" rel="noopener" class="caso reveal" data-delay="5">
+      <div class="caso-num">06</div>
+      <div class="caso-body"><div class="caso-cat">Gastronomía</div><div class="caso-name">Mates ITACA</div><div class="caso-desc">Menú digital pensado para celular, lectura rápida y acceso directo desde el local.</div><div class="caso-meta"><span>Menú digital</span><span>Mobile</span><span>Rápido</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+    <a href="https://onevisionpedidos.up.railway.app/" target="_blank" rel="noopener" class="caso reveal" data-delay="5">
+      <div class="caso-num">07</div>
+      <div class="caso-body"><div class="caso-cat">Sistema de pedidos</div><div class="caso-name">OneVision Pedidos</div><div class="caso-desc">Sistema para tomar pedidos, ver estados y ordenar el flujo de trabajo diario.</div><div class="caso-meta"><span>Pedidos</span><span>Estados</span><span>Operación</span></div></div>
+      <div class="caso-arrow">›</div>
+    </a>
+  </div>
+</section>
+
+<section class="servicios" id="servicios">
+  <div class="reveal"><div class="s-tag">// Lo que hago</div></div>
+  <h2 class="s-title reveal">Servicios <em>a medida</em></h2>
+  <div class="sv-grid">
+    <div class="sv-item reveal" data-delay="1">
+      <div class="sv-icon">01</div>
+      <div class="sv-body"><h3>Sitios Comerciales</h3><p>Landing pages y sitios institucionales con mensaje claro, estética profesional y llamados a la acción bien ubicados.</p><span class="sv-tag">→ landing · institucional · guía comercial</span></div>
+    </div>
+    <div class="sv-item reveal" data-delay="2">
+      <div class="sv-icon">02</div>
+      <div class="sv-body"><h3>E-commerce</h3><p>Tiendas online con catálogo ordenado, experiencia mobile-first, productos destacados y flujo pensado para vender.</p><span class="sv-tag">→ tienda · catálogo · stock</span></div>
+    </div>
+    <div class="sv-item reveal" data-delay="3">
+      <div class="sv-icon">03</div>
+      <div class="sv-body"><h3>Sistemas a Medida</h3><p>Apps web, paneles de control y sistemas de gestión que simplifican pedidos, clientes, métricas y operación diaria.</p><span class="sv-tag">→ app · dashboard · panel</span></div>
+    </div>
+    <div class="sv-item reveal" data-delay="4">
+      <div class="sv-icon">04</div>
+      <div class="sv-body"><h3>Deploy &amp; Soporte</h3><p>Proyecto publicado, optimizado para producción y acompañado después del lanzamiento para que no quedes solo.</p><span class="sv-tag">→ railway · docker · vps · soporte</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="oferta-wrap reveal">
+    <div class="oferta-badge"><div class="hero-dot"></div>Oferta activa ahora</div>
+    <h2>Tu página web<br>lista en 7 días</h2>
+    <p>Una guía digital completa para presentar tu marca, explicar tus servicios y llevar al cliente directo al contacto.</p>
+    <div class="oferta-items">
+      <div class="oferta-item"><div class="oferta-check">✓</div>Diseño personalizado con estructura profesional</div>
+      <div class="oferta-item"><div class="oferta-check">✓</div>Secciones pensadas para explicar, convencer y contactar</div>
+      <div class="oferta-item"><div class="oferta-check">✓</div>Email, WhatsApp y formulario listos para recibir consultas</div>
+      <div class="oferta-item"><div class="oferta-check">✓</div>Entrega en 7 días hábiles</div>
+      <div class="oferta-item"><div class="oferta-check">✓</div>Soporte post-lanzamiento</div>
+    </div>
+    <a href="#contacto" class="btn btn-primary">Consultar precio →</a>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="reveal"><div class="s-tag">// Tecnologías</div></div>
+  <h2 class="s-title reveal">Stack</h2>
+  <div class="stack-cloud reveal">
+    <div class="stack-pill">HTML/CSS</div><div class="stack-pill">JavaScript</div><div class="stack-pill">Python</div><div class="stack-pill">Node.js</div><div class="stack-pill">React</div><div class="stack-pill">Docker</div><div class="stack-pill">Railway</div><div class="stack-pill">PostgreSQL</div><div class="stack-pill">MySQL</div><div class="stack-pill">Nginx</div><div class="stack-pill">Git</div><div class="stack-pill">Linux</div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="reveal"><div class="s-tag">// Hablemos</div></div>
+  <h2 class="s-title reveal">¿Tenés un <em>proyecto?</em></h2>
+  <div class="contacto-inner">
+    <div>
+      <div class="contacto-top reveal">
+        <h2>Respuesta directa</h2>
+        <p>Contame qué necesitás, qué vendés y qué objetivo querés lograr. Te propongo una estructura clara para tu página.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:jeremontoya1555@gmail.com" class="contact-link reveal" data-delay="1">
+          <div class="contact-link-ico">@</div>
+          <div class="contact-link-text"><div class="contact-link-label">Email</div><div class="contact-link-val">jeremontoya1555@gmail.com</div></div>
+        </a>
+        <a href="https://wa.me/543516139362" target="_blank" rel="noopener" class="contact-link reveal" data-delay="2">
+          <div class="contact-link-ico">WA</div>
+          <div class="contact-link-text"><div class="contact-link-label">WhatsApp</div><div class="contact-link-val">351 613 9362</div></div>
+        </a>
+        <a href="https://github.com/" target="_blank" rel="noopener" class="contact-link reveal" data-delay="3">
+          <div class="contact-link-ico">GH</div>
+          <div class="contact-link-text"><div class="contact-link-label">GitHub</div><div class="contact-link-val">Ver código</div></div>
+        </a>
+      </div>
+    </div>
+    <form class="form-card reveal" action="mailto:jeremontoya1555@gmail.com" method="post" enctype="text/plain">
+      <h3>Armemos tu guía web</h3>
+      <div class="form-group"><input type="text" name="nombre" placeholder="Tu nombre" required/></div>
+      <div class="form-group"><input type="email" name="email" placeholder="Tu email" required/></div>
+      <div class="form-group"><input type="text" name="proyecto" placeholder="¿De qué se trata el proyecto?"/></div>
+      <div class="form-group"><textarea rows="4" name="mensaje" placeholder="Contanos más detalles..."></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Enviar mensaje →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Jeremías Montoya</div>
+  <p>© 2025 · Programador Web · Córdoba, Argentina</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('shown');obs.unobserve(i.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+if(window.innerWidth>768){
+  const dot=document.createElement('div');dot.className='cursor-dot';document.body.appendChild(dot);
+  document.addEventListener('mousemove',e=>{dot.style.left=e.clientX-3+'px';dot.style.top=e.clientY-3+'px';});
+}
+</script>
+</body>
+</html>
